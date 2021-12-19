@@ -64,14 +64,15 @@ const Graph = () => {
 
   return (
     <Box
-      minW={{ base: '350px', lg: '550px' }}
+      maxW={{ base: '350px', lg: '550px' }}
       borderRadius={15}
       bg="purple.400"
       p={{ base: 5, lg: 10 }}
+      id="Graph"
     >
+    <Heading align="center" mb={5}>Sleep Chart</Heading>
       <Box
-        w={{ base: '300px', lg: '500px' }}
-        h={{ base: '300px', lg: '500px' }}
+        boxSize={['300px', '500px' ]}
       >
         <FlexibleXYPlot xType="time" stroke="purple">
           {/* <VerticalGridLines /> */}

@@ -22,7 +22,7 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <UserContext.Provider value={value}>
-        <Box bg="purple.600" minH="100vh">
+        <Box bg="purple.200" minH="100vh">
           <VStack spacing={8}>
             {user ? <AuthenticatedScreen /> : <UnauthenticatedScreen />}
           </VStack>

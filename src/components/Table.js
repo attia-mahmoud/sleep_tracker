@@ -36,7 +36,7 @@ const RecordsTable = () => {
 
   return (
     <>
-      <Box>
+      <Box id="Table">
         <Table variant="striped" colorScheme="purple">
           <TableCaption placement="top" fontSize="1.7rem" mb="5">
             A Summary of Your Sleeping Hours
@@ -58,7 +58,7 @@ const RecordsTable = () => {
           <Tbody>
             {records.map(record => {
               return (
-                <Tr>
+                <Tr key={record.id}>
                   <Td>{record.date}</Td>
                   <Td isNumeric>{record.sleep_time}</Td>
                   <Td isNumeric>{record.wake_time}</Td>

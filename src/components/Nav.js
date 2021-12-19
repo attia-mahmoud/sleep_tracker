@@ -24,18 +24,18 @@ import { UserContext } from '../App';
 import { signOutWithGoogle } from '../Firebase';
 import { Icon } from '@chakra-ui/react';
 
-const Links = ['Dashboard', 'Projects', 'Team'];
+const Links = ['Add Entry', 'Graph', 'Table'];
 
-const NavLink = ({ children }) => (
+const NavLink = ({ children, href }) => (
   <Link
     px={2}
     py={1}
     rounded={'md'}
     _hover={{
       textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700'),
+      bg: useColorModeValue('purple.600', 'purple.700'),
     }}
-    href={'#'}
+    href={`#${href}`}
   >
     {children}
   </Link>
@@ -50,7 +50,7 @@ export default function Nav(props) {
 
   return (
     <>
-      <Box bg="purple.700" color="whiteAlpha.800" px={4} {...props}>
+      <Box bg="purple.500" color="whiteAlpha.800" px={4} {...props}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <HStack spacing={8} alignItems={'center'}>
             <HStack>
@@ -65,7 +65,7 @@ export default function Nav(props) {
               display={{ base: 'none', md: 'flex' }}
             >
               {Links.map(link => (
-                <NavLink key={link}>{link}</NavLink>
+                <NavLink key={link} href={link}>{link}</NavLink>
               ))}
             </HStack>
           </HStack>
@@ -89,7 +89,7 @@ export default function Nav(props) {
             </Menu>
           </Flex>
         </Flex>
-
+{/* 
         {isOpen ? (
           <Box pb={4} display={{ md: 'none' }}>
             <Stack as={'nav'} spacing={4}>
@@ -98,7 +98,7 @@ export default function Nav(props) {
               ))}
             </Stack>
           </Box>
-        ) : null}
+        ) : null} */}
       </Box>
     </>
   );

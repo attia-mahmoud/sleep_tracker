@@ -88,7 +88,7 @@ const Splash = () => {
     if (records) {
       for (const record of records) {
         const timeSlept =
-          record.sleep_duration.hours + record.sleep_duration.minutes / 60;
+        record.sleep_duration.hours + record.sleep_duration.minutes / 60;
         if (timeSlept >= 8) daysMore++;
         else if (timeSlept <= 6) daysLess++;
         else daysGood++;
@@ -102,7 +102,7 @@ const Splash = () => {
   return (
     <>
       <Flex
-        w="60%"
+        w={{base:"60%", lg: "80%"}}
         direction={{ base: 'column', lg: 'row' }}
         align="center"
         justify="space-around"
@@ -111,7 +111,7 @@ const Splash = () => {
           <Box
             minW={{ base: '350px', lg: '550px' }}
             borderRadius={15}
-            bg="purple.400"
+            bg="purple.300"
             p={10}
           >
             <VStack align="center">
@@ -119,7 +119,7 @@ const Splash = () => {
                 value={(getAvg('duration')[1] / 12) * 100 || 0}
                 size="250px"
                 thickness={'12px'}
-                color="purple.500"
+                color="purple.700"
                 capIsRound
                 trackColor="purple.100"
               >
@@ -135,7 +135,7 @@ const Splash = () => {
             </VStack>
           </Box>
           <HStack>
-            <Box minW="170" maxW="200" borderRadius={15} bg="purple.400" p={3}>
+            <Box minW="170" maxW="200" borderRadius={15} bg="purple.300" p={3}>
               <VStack align="center">
                 <Heading as="h4" size="sm">
                   AVG WAKE TIME
@@ -145,7 +145,7 @@ const Splash = () => {
                 </Heading>
               </VStack>
             </Box>
-            <Box minW="170" maxW="200" borderRadius={15} bg="purple.400" p={3}>
+            <Box minW="170" maxW="200" borderRadius={15} bg="purple.300" p={3}>
               <VStack align="center">
                 <Heading as="h4" size="sm">
                   AVG SLEEP TIME
@@ -158,28 +158,28 @@ const Splash = () => {
           </HStack>
         </VStack>
         <VStack spacing={{ base: 5, lg: 10 }} mt={5} textAlign="center">
-          <Box minW="100%" borderRadius={15} bg="purple.400" p={3}>
+          <Box minW="100%" borderRadius={15} bg="green.300" p={3}>
             <Heading as="h4" size={{ base: 'sm', lg: 'md' }}>
               Days Slept Between 6 and 8 Hours
             </Heading>
             <Heading as="h4" size="lg" align="center">
-              {getNumDays()[2]} Days
+              {getNumDays().daysGood} Days(s)
             </Heading>
           </Box>
-          <Box minW="100%" borderRadius={15} bg="purple.400" p={3}>
+          <Box minW="100%" borderRadius={15} bg="blue.300" p={3}>
             <Heading as="h4" size={{ base: 'sm', lg: 'md' }}>
               Days Slept More Than 8 hours
             </Heading>
             <Heading as="h4" size="lg" align="center">
-              {getNumDays()[0]} Days
+              {getNumDays().daysMore} Days(s)
             </Heading>
           </Box>
-          <Box minW="100%" borderRadius={15} bg="purple.400" p={3}>
+          <Box minW="100%" borderRadius={15} bg="red.300" p={3}>
             <Heading as="h4" size={{ base: 'sm', lg: 'md' }}>
               Days Slept Less Than 6 hours
             </Heading>
             <Heading as="h4" size="lg" align="center">
-              {getNumDays()[1]} Days
+              {getNumDays().daysLess} Day(s)
             </Heading>
           </Box>
         </VStack>

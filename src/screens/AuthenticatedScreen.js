@@ -21,7 +21,7 @@ const AuthenticatedScreen = () => {
   return (
     <>
       <Nav minW="100vw" m={0} />
-      <Heading size="xl" maxW="80%" textAlign={'center'}>
+      <Heading size="xl" maxW="80%" textAlign={'center'} color="purple.700">
         Good Morning {user?.displayName}!
       </Heading>
       {loading ? (
@@ -34,8 +34,8 @@ const AuthenticatedScreen = () => {
           <Splash />
           <AddEntry />
           <Flex
-            direction={['column', 'row']}
-            justify="space-between"
+            direction={{base: 'column', md: "column", lg: 'column'}}
+            justify="space-around"
             align="center"
             minW="70%"
             maxW="90%"

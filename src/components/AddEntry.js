@@ -56,7 +56,7 @@ const AddEntry = () => {
 
   return (
     <>
-      <VStack minW="30%">
+      <VStack minW="30%" id="Add Entry">
         <Button
           onClick={onToggle}
           size="lg"
