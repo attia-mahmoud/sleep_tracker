@@ -61,15 +61,16 @@ const AddEntry = () => {
           onClick={onToggle}
           size="lg"
           colorScheme="purple"
-          iconSpacing="-1.5"
-          rightIcon={<AddIcon />}
+          fontSize="1.5rem"
+          bg="purple.400"
           iconSpacing="3"
+          rightIcon={<AddIcon />}
         >
           Add Entry
         </Button>
         <Collapse in={isOpen} animateOpacity>
-          <VStack spacing={10}>
-            <FormControl id="date">
+          <VStack spacing={10} color="purple">
+            <FormControl id="date" borderColor="purple">
               <FormLabel>Date</FormLabel>
               <Input
                 type="date"
@@ -78,7 +79,7 @@ const AddEntry = () => {
                 }
               />
             </FormControl>
-            <FormControl id="sleep-time">
+            <FormControl id="sleep-time" borderColor="purple">
               <FormLabel>Sleep Time</FormLabel>
               <Input
                 type="time"
@@ -87,7 +88,7 @@ const AddEntry = () => {
                 }
               />
             </FormControl>
-            <FormControl id="wake-time">
+            <FormControl id="wake-time" borderColor="purple">
               <FormLabel>Wake Up Time</FormLabel>
               <Input
                 type="time"
@@ -97,10 +98,10 @@ const AddEntry = () => {
               />
             </FormControl>
             <Stack spacing={4} direction="row" align="center">
-              <Button colorScheme="red" variant="ghost" onClick={onToggle}>
+              <Button colorScheme="red"  variant="solid" onClick={onToggle}>
                 Cancel
               </Button>
-              <Button colorScheme="blue" variant="outline">
+              <Button colorScheme="blue" variant="solid">
                 Reset
               </Button>
               <Button colorScheme="green" variant="solid" onClick={addEntry}>

@@ -19,7 +19,6 @@ import { UserContext } from '../App.js';
 import image from '../assets/images/loading.svg';
 
 const Graph = () => {
-  const [loading, setLoading] = React.useState(true);
   const { user } = React.useContext(UserContext);
   const [records, setRecords] = React.useState([]);
   const CollectionRef = collection(db, 'sleep_records');
@@ -49,33 +48,21 @@ const Graph = () => {
     }
   }
 
-  setTimeout(() => {
-    setLoading(false);
-  }, 1000);
 
-  if (loading) {
-    return (
-      <VStack>
-        <Heading>Loading...</Heading>
-        <Image src={image} maxW="35%" />
-      </VStack>
-    );
-  }
+
 
   return (
-    <Box
-      maxW={{ base: '350px', lg: '550px' }}
-      borderRadius={15}
-      bg="purple.400"
+    <>
+    {records ? (
+      <Box
       p={{ base: 5, lg: 10 }}
       id="Graph"
-    >
-    <Heading align="center" mb={5}>Sleep Chart</Heading>
-      <Box
-        boxSize={['300px', '500px' ]}
+      // bg="purple.300"
+      borderRadius={15}
+      // boxSize={['350px', '500px' ]}
+      boxSize={{base: "24rem", lg: "30rem"}}
       >
         <FlexibleXYPlot xType="time" stroke="purple">
-          {/* <VerticalGridLines /> */}
           <HorizontalGridLines />
           <XAxis
             tickFormat={value =>
@@ -87,11 +74,11 @@ const Graph = () => {
               ticks: { stroke: '#ADDDE1' },
               text: {
                 stroke: 'none',
-                fill: '#ffffff',
+                fill: 'purple',
                 fontWeight: 600,
                 fontSize: 11,
               },
-              title: { fill: '#ffffff', fontSize: 15 },
+              title: { fill: 'purple', fontSize: 15 },
             }}
             tickLabelAngle={-30}
             tickTotal={5}
@@ -103,11 +90,11 @@ const Graph = () => {
               ticks: { stroke: '#ADDDE1' },
               text: {
                 stroke: 'none',
-                fill: '#ffffff',
+                fill: 'purple',
                 fontWeight: 600,
                 fontSize: 15,
               },
-              title: { fill: '#ffffff', fontSize: 15 },
+              title: { fill: 'purple', fontSize: 15 },
             }}
           />
           <LineMarkSeries
@@ -117,8 +104,14 @@ const Graph = () => {
             curve={'curveMonotoneX'}
           />
         </FlexibleXYPlot>
-      </Box>
-    </Box>
+    </Box>) : (
+      <VStack>
+          <Heading>Loading...</Heading>
+          <Image src={image} maxW="75%" />
+        </VStack>
+    )
+    }
+    </>
   );
 };
 

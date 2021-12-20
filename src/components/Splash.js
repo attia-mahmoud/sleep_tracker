@@ -13,6 +13,8 @@ import {
   Flex,
 } from '@chakra-ui/react';
 import { UserContext } from '../App.js';
+import image from '../assets/images/loading.svg';
+
 
 const Splash = () => {
   const { user } = React.useContext(UserContext);
@@ -94,14 +96,42 @@ const Splash = () => {
         else daysGood++;
       }
     }
-    return { daysMore, daysLess, daysGood };
+    return [ daysMore, daysLess, daysGood ]
   };
 
   let photoURL = user.photoURL;
 
+  const AverageBox = ({heading, param}) => {
+    return (
+      <Box minW="170" maxW="200" borderRadius={15} bg="purple.300" p={3} boxShadow="md">
+      <VStack align="center">
+        <Heading as="h4" size="sm">
+          {heading}
+        </Heading>
+        <Heading as="h4" size="md">
+          {getAvg(param)}
+        </Heading>
+      </VStack>
+    </Box>
+    )
+  }
+
+  const CountBox = ({heading, param, color}) => {
+    return (
+    <Box minW="100%" borderRadius={15} bg={color} p={3} boxShadow="base">
+      <Heading as="h4" size={{ base: 'sm', lg: 'md' }}>
+        {heading}
+      </Heading>
+      <Heading as="h4" size="lg" align="center">
+        {getNumDays()[param]} Days(s)
+      </Heading>
+    </Box>
+    )
+  }
+
   return (
     <>
-      <Flex
+      {records ? <Flex
         w={{base:"60%", lg: "80%"}}
         direction={{ base: 'column', lg: 'row' }}
         align="center"
@@ -109,6 +139,7 @@ const Splash = () => {
       >
         <VStack spacing={5}>
           <Box
+            boxShadow="lg"
             minW={{ base: '350px', lg: '550px' }}
             borderRadius={15}
             bg="purple.300"
@@ -135,55 +166,21 @@ const Splash = () => {
             </VStack>
           </Box>
           <HStack>
-            <Box minW="170" maxW="200" borderRadius={15} bg="purple.300" p={3}>
-              <VStack align="center">
-                <Heading as="h4" size="sm">
-                  AVG WAKE TIME
-                </Heading>
-                <Heading as="h4" size="md">
-                  {getAvg('wake')}
-                </Heading>
-              </VStack>
-            </Box>
-            <Box minW="170" maxW="200" borderRadius={15} bg="purple.300" p={3}>
-              <VStack align="center">
-                <Heading as="h4" size="sm">
-                  AVG SLEEP TIME
-                </Heading>
-                <Heading as="h4" size="md">
-                  {getAvg('sleep')}
-                </Heading>
-              </VStack>
-            </Box>
+            <AverageBox heading={'AVG WAKE TIME'} param={'wake'}/>
+            <AverageBox heading={'AVG SLEEP TIME'} param={'sleep'}/>
           </HStack>
         </VStack>
-        <VStack spacing={{ base: 5, lg: 10 }} mt={5} textAlign="center">
-          <Box minW="100%" borderRadius={15} bg="green.300" p={3}>
-            <Heading as="h4" size={{ base: 'sm', lg: 'md' }}>
-              Days Slept Between 6 and 8 Hours
-            </Heading>
-            <Heading as="h4" size="lg" align="center">
-              {getNumDays().daysGood} Days(s)
-            </Heading>
-          </Box>
-          <Box minW="100%" borderRadius={15} bg="blue.300" p={3}>
-            <Heading as="h4" size={{ base: 'sm', lg: 'md' }}>
-              Days Slept More Than 8 hours
-            </Heading>
-            <Heading as="h4" size="lg" align="center">
-              {getNumDays().daysMore} Days(s)
-            </Heading>
-          </Box>
-          <Box minW="100%" borderRadius={15} bg="red.300" p={3}>
-            <Heading as="h4" size={{ base: 'sm', lg: 'md' }}>
-              Days Slept Less Than 6 hours
-            </Heading>
-            <Heading as="h4" size="lg" align="center">
-              {getNumDays().daysLess} Day(s)
-            </Heading>
-          </Box>
+        <VStack spacing={{ base: 5, lg: 10 }} mt={{base: "10", lg: "0"}}>
+          <CountBox heading={"Days Slept Between 6 and 8 Hours"} param={2} color={'green.300'}/>
+          <CountBox heading={"Days Slept More Than 8 hours"} param={0}  color={'blue.300'}/>
+          <CountBox heading={"Days Slept Less Than 6 hours"} param={1}  color={'red.300'}/>
         </VStack>
-      </Flex>
+      </Flex> : (
+        <VStack>
+          <Heading>Loading...</Heading>
+          <Image src={image} maxW="75%" />
+        </VStack>
+      )}
     </>
   );
 };

@@ -33,7 +33,7 @@ const NavLink = ({ children, href }) => (
     rounded={'md'}
     _hover={{
       textDecoration: 'none',
-      bg: useColorModeValue('purple.600', 'purple.700'),
+      bg: useColorModeValue('purple.600', 'purple.500'),
     }}
     href={`#${href}`}
   >
@@ -50,8 +50,8 @@ export default function Nav(props) {
 
   return (
     <>
-      <Box bg="purple.500" color="whiteAlpha.800" px={4} {...props}>
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+      <Box bg="purple.400" color="whiteAlpha.800" px={4} {...props}>
+        <Flex h={16} alignItems={'center'} justifyContent={'space-between'} p={7}>
           <HStack spacing={8} alignItems={'center'}>
             <HStack>
               <Text fontWeight={600} fontSize={['md', 'xl']}>
@@ -89,16 +89,6 @@ export default function Nav(props) {
             </Menu>
           </Flex>
         </Flex>
-{/* 
-        {isOpen ? (
-          <Box pb={4} display={{ md: 'none' }}>
-            <Stack as={'nav'} spacing={4}>
-              {Links.map(link => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
-            </Stack>
-          </Box>
-        ) : null} */}
       </Box>
     </>
   );

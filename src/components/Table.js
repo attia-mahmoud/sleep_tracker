@@ -36,21 +36,21 @@ const RecordsTable = () => {
 
   return (
     <>
-      <Box id="Table">
-        <Table variant="striped" colorScheme="purple">
-          <TableCaption placement="top" fontSize="1.7rem" mb="5">
-            A Summary of Your Sleeping Hours
+      <Box id="Table" m={10} >
+        <Table fontSize={{base: "0.9rem", lg: '1rem'}} variant="striped" colorScheme="purple">
+          <TableCaption color="purple.700">
+            Latest Entries
           </TableCaption>
           <Thead>
             <Tr>
-              <Th color="white">Date</Th>
-              <Th color="white" isNumeric>
+              <Th color="purple.600">Date</Th>
+              <Th color="purple.600" isNumeric>
                 Sleep Time
               </Th>
-              <Th color="white" isNumeric>
+              <Th color="purple.600" isNumeric>
                 Wake Up Time
               </Th>
-              <Th color="white" isNumeric>
+              <Th color="purple.600" isNumeric>
                 Sleep Duration (Hours)
               </Th>
             </Tr>
