@@ -48,69 +48,66 @@ const Graph = () => {
     }
   }
 
-
-
-
   return (
     <>
-    {records ? (
-      <Box
-      p={{ base: 5, lg: 10 }}
-      id="Graph"
-      // bg="purple.300"
-      borderRadius={15}
-      // boxSize={['350px', '500px' ]}
-      boxSize={{base: "24rem", lg: "30rem"}}
-      >
-        <FlexibleXYPlot xType="time" stroke="purple">
-          <HorizontalGridLines />
-          <XAxis
-            tickFormat={value =>
-              new Date(value).toLocaleDateString().split(' ')
-            }
-            title="Date"
-            style={{
-              line: { stroke: 'purple' },
-              ticks: { stroke: '#ADDDE1' },
-              text: {
-                stroke: 'none',
-                fill: 'purple',
-                fontWeight: 600,
-                fontSize: 11,
-              },
-              title: { fill: 'purple', fontSize: 15 },
-            }}
-            tickLabelAngle={-30}
-            tickTotal={5}
-          />
-          <YAxis
-            title="Sleep Duration (hrs)"
-            style={{
-              line: { stroke: 'purple' },
-              ticks: { stroke: '#ADDDE1' },
-              text: {
-                stroke: 'none',
-                fill: 'purple',
-                fontWeight: 600,
-                fontSize: 15,
-              },
-              title: { fill: 'purple', fontSize: 15 },
-            }}
-          />
-          <LineMarkSeries
-            data={data}
-            style={{ strokeWidth: 3 }}
-            markStyle={{ stroke: 'purple', fill: 'purple' }}
-            curve={'curveMonotoneX'}
-          />
-        </FlexibleXYPlot>
-    </Box>) : (
-      <VStack>
+      {records ? (
+        <Box
+          p={{ base: 5, lg: 10 }}
+          id="Graph"
+          // bg="purple.300"
+          borderRadius={15}
+          // boxSize={['350px', '500px' ]}
+          boxSize={{ base: '24rem', lg: '30rem' }}
+        >
+          <FlexibleXYPlot xType="time" stroke="purple">
+            <HorizontalGridLines />
+            <XAxis
+              tickFormat={value =>
+                new Date(value).toLocaleDateString().split(' ')
+              }
+              title="Date"
+              style={{
+                line: { stroke: 'purple' },
+                ticks: { stroke: '#ADDDE1' },
+                text: {
+                  stroke: 'none',
+                  fill: 'purple',
+                  fontWeight: 600,
+                  fontSize: 11,
+                },
+                title: { fill: 'purple', fontSize: 15 },
+              }}
+              tickLabelAngle={-30}
+              tickTotal={7}
+            />
+            <YAxis
+              title="Sleep Duration (hrs)"
+              style={{
+                line: { stroke: 'purple' },
+                ticks: { stroke: '#ADDDE1' },
+                text: {
+                  stroke: 'none',
+                  fill: 'purple',
+                  fontWeight: 600,
+                  fontSize: 15,
+                },
+                title: { fill: 'purple', fontSize: 15 },
+              }}
+            />
+            <LineMarkSeries
+              data={data}
+              style={{ strokeWidth: 3 }}
+              markStyle={{ stroke: 'purple', fill: 'purple' }}
+              curve={'curveMonotoneX'}
+            />
+          </FlexibleXYPlot>
+        </Box>
+      ) : (
+        <VStack>
           <Heading>Loading...</Heading>
           <Image src={image} maxW="75%" />
         </VStack>
-    )
-    }
+      )}
     </>
   );
 };

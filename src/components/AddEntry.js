@@ -18,7 +18,7 @@ import { UserContext } from '../App.js';
 import { PhoneIcon, AddIcon, WarningIcon } from '@chakra-ui/icons';
 
 const AddEntry = () => {
-  const { user } = React.useContext(UserContext);
+  const { user, setUser } = React.useContext(UserContext);
   const { isOpen, onToggle } = useDisclosure();
   const [data, setData] = React.useState({
     date: null,
@@ -51,6 +51,7 @@ const AddEntry = () => {
       date: data.date,
       sleep_duration: calcDif(),
     });
+    setUser(user => user);
     onToggle();
   };
 
@@ -60,9 +61,13 @@ const AddEntry = () => {
         <Button
           onClick={onToggle}
           size="lg"
-          colorScheme="purple"
           fontSize="1.5rem"
-          bg="purple.400"
+          bg="purple.500"
+          color="whiteAlpha.800"
+          _hover={{
+            background: 'purple.100',
+            color: 'purple.500',
+          }}
           iconSpacing="3"
           rightIcon={<AddIcon />}
         >
@@ -98,7 +103,7 @@ const AddEntry = () => {
               />
             </FormControl>
             <Stack spacing={4} direction="row" align="center">
-              <Button colorScheme="red"  variant="solid" onClick={onToggle}>
+              <Button colorScheme="red" variant="solid" onClick={onToggle}>
                 Cancel
               </Button>
               <Button colorScheme="blue" variant="solid">

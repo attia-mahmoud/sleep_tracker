@@ -6,6 +6,7 @@ import { getAuth } from 'firebase/auth';
 import { onAuthStateChanged } from 'firebase/auth';
 import Fonts from './fonts';
 import theme from './theme';
+import Footer from './components/Footer';
 
 export const UserContext = React.createContext(null);
 
@@ -25,6 +26,7 @@ function App() {
         <Box bg="purple.200" minH="100vh">
           <VStack spacing={8}>
             {user ? <AuthenticatedScreen /> : <UnauthenticatedScreen />}
+            <Footer />
           </VStack>
         </Box>
       </UserContext.Provider>

@@ -22,7 +22,7 @@ import HeroSignIn from './HeroSignIn';
 const Hero = () => {
   return (
     <>
-      <VStack>
+      <VStack color="purple.600">
         <SimpleGrid
           columns={{ base: 1, md: 2 }}
           spacing={0}
@@ -37,7 +37,7 @@ const Hero = () => {
             zIndex: -1,
             content: '" "',
           }}
-          mb={20}
+          mb={{ lg: 20, base: 0 }}
         >
           <Flex
             direction="column"

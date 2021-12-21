@@ -22,8 +22,10 @@ const SignInButton = () => {
     <Button
       onClick={SignIn}
       leftIcon={<FaGoogle />}
-      colorScheme="gray"
+      colorScheme="purple"
       size="lg"
+      color="purple.700"
+      bg="purple.100"
     >
       Sign in with Google
     </Button>

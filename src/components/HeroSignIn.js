@@ -39,7 +39,10 @@ const HeroSignIn = () => {
                 color={useColorModeValue('gray.900', 'white')}
                 mb={12}
               >
-                <chakra.span display={{ base: 'block', xl: 'inline' }}>
+                <chakra.span
+                  display={{ base: 'block', xl: 'inline' }}
+                  color="purple.600"
+                >
                   Changing Your Life Starts With a Click
                 </chakra.span>
               </chakra.h1>

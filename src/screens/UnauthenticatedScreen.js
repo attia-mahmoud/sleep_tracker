@@ -19,12 +19,11 @@ import Hero from '../components/Hero';
 const UnauthenticatedScreen = () => {
   return (
     <>
-      <VStack mt={20} minH={{ base: '80vh', lg: '100vh' }}>
+      <VStack mt={20} minH={{ base: '80vh', lg: '100vh' }} color="purple.600">
         <Heading
           as="h1"
           fontSize={['3rem', '6rem']}
           textAlign="center"
-          color="whiteAlpha.900"
           fontStyle="heading"
         >
           Sleep.io
@@ -38,7 +37,7 @@ const UnauthenticatedScreen = () => {
         >
           <Image src={image} objectFit="fit" boxSize={['90%', '80%', '50%']} />
           <VStack spacing={10} maxW="100%" textAlign="center" ml="3" mr="3">
-            <Heading as="h3" size="md">
+            <Heading as="h3" size="lg">
               Start keeping track of your sleep today!
             </Heading>
             <SignInButton />
