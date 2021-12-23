@@ -12,22 +12,22 @@ import { UserContext } from '../App.js';
 
 const AuthenticatedScreen = () => {
   const { user } = React.useContext(UserContext);
+
+  const [count, setCount] = React.useState(0)
+
+  function forceUpdate() {
+      setCount(count => count + 1)
+  }
+
   return (
     <>
       <Nav minW="100vw" m={0} />
       <Header text={`Hello ${user?.displayName}! 👋`}>
-        <AddEntry />
+        <AddEntry onClick={forceUpdate}/>
       </Header>
       <Header text={'View Your Dashboard'} />
       <Splash />
-      {/* <Flex
-        direction={{ base: 'column', lg: 'row' }}
-        justify="space-around"
-        p={5}
-        align="center"
-      >
-        <Box h="50px" />
-      </Flex> */}
+
       <Header text={'Visualize Your Sleeping Patterns'} />
       <Tabs
         isFitted

@@ -2,12 +2,9 @@ import React from 'react';
 import {
   FormControl,
   FormLabel,
-  FormErrorMessage,
   Input,
-  FormHelperText,
   Stack,
   Button,
-  ButtonGroup,
   VStack,
   Collapse,
 } from '@chakra-ui/react';
@@ -15,10 +12,10 @@ import { useDisclosure } from '@chakra-ui/react';
 import { db } from '../Firebase';
 import { addDoc, collection } from 'firebase/firestore';
 import { UserContext } from '../App.js';
-import { PhoneIcon, AddIcon, WarningIcon } from '@chakra-ui/icons';
+import { AddIcon } from '@chakra-ui/icons';
 
-const AddEntry = () => {
-  const { user, setUser } = React.useContext(UserContext);
+const AddEntry = ({onClick}) => {
+  const { user, setGlobalRecords } = React.useContext(UserContext);
   const { isOpen, onToggle } = useDisclosure();
   const [data, setData] = React.useState({
     date: null,
@@ -44,14 +41,15 @@ const AddEntry = () => {
 
   const CollectionRef = collection(db, 'sleep_records');
   const addEntry = async () => {
-    await addDoc(CollectionRef, {
+    const entry = {
       user_id: user.uid,
       sleep_time: data.sleepTime,
       wake_time: data.wakeTime,
       date: data.date,
       sleep_duration: calcDif(),
-    });
-    setUser(user => user);
+    }
+    await addDoc(CollectionRef, entry);
+    setGlobalRecords(prevState => prevState.push(entry))
     onToggle();
   };
 

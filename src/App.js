@@ -12,8 +12,8 @@ export const UserContext = React.createContext(null);
 
 function App() {
   const [user, setUser] = React.useState(null);
-
-  const value = { user, setUser };
+  const [globalRecords, setGlobalRecords] = React.useState([])
+  const value = { user, setUser, globalRecords, setGlobalRecords };
   const auth = getAuth();
   onAuthStateChanged(auth, user => {
     if (user) setUser(user);
