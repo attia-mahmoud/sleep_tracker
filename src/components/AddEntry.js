@@ -13,8 +13,9 @@ import { db } from '../Firebase';
 import { addDoc, collection } from 'firebase/firestore';
 import { UserContext } from '../App.js';
 import { AddIcon } from '@chakra-ui/icons';
+import { calcDif } from '../utils/utils';
 
-const AddEntry = ({onClick}) => {
+const AddEntry = ({ onClick }) => {
   const { user, setGlobalRecords } = React.useContext(UserContext);
   const { isOpen, onToggle } = useDisclosure();
   const [data, setData] = React.useState({
@@ -23,49 +24,29 @@ const AddEntry = ({onClick}) => {
     sleepTime: null,
   });
 
-  const calcDif = () => {
-    if (!data.sleepTime | !data.wakeTime) {
-      return;
-    }
-    const timeStart = new Date('01/01/2007 ' + data.sleepTime);
-    const timeEnd = new Date('01/01/2007 ' + data.wakeTime);
-    const hours = parseInt(
-      (Math.abs(timeEnd - timeStart) / (1000 * 60 * 60)) % 24
-    );
-    const minutes = parseInt(
-      (Math.abs(timeEnd.getTime() - timeStart.getTime()) / (1000 * 60)) % 60
-    );
-
-    return { hours, minutes };
-  };
-
   const CollectionRef = collection(db, 'sleep_records');
+
   const addEntry = async () => {
     const entry = {
       user_id: user.uid,
       sleep_time: data.sleepTime,
       wake_time: data.wakeTime,
       date: data.date,
-      sleep_duration: calcDif(),
-    }
+      sleep_duration: calcDif(data),
+    };
     await addDoc(CollectionRef, entry);
-    setGlobalRecords(prevState => prevState.push(entry))
+    setGlobalRecords(prevState => prevState.push(entry));
     onToggle();
   };
 
   return (
     <>
-      <VStack minW="30%" id="Add Entry">
+      <VStack minW="30%" id="Add Entry" mt={{ base: '10', lg: '0' }}>
         <Button
           onClick={onToggle}
           size="lg"
           fontSize="1.5rem"
-          bg="purple.500"
-          color="whiteAlpha.800"
-          _hover={{
-            background: 'purple.100',
-            color: 'purple.500',
-          }}
+          colorScheme="purple"
           iconSpacing="3"
           rightIcon={<AddIcon />}
         >
@@ -101,10 +82,10 @@ const AddEntry = ({onClick}) => {
               />
             </FormControl>
             <Stack spacing={4} direction="row" align="center">
-              <Button colorScheme="red" variant="solid" onClick={onToggle}>
+              <Button colorScheme="red" variant="ghost" onClick={onToggle}>
                 Cancel
               </Button>
-              <Button colorScheme="blue" variant="solid">
+              <Button colorScheme="blue" variant="outline">
                 Reset
               </Button>
               <Button colorScheme="green" variant="solid" onClick={addEntry}>

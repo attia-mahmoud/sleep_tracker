@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  Heading,
-  VStack,
-  HStack,
-  Image,
-  Flex,
-  Spacer,
-  Box,
-} from '@chakra-ui/react';
+import { Heading, Flex } from '@chakra-ui/react';
 
 const Header = ({ children, text }) => {
   return (
@@ -19,13 +11,7 @@ const Header = ({ children, text }) => {
         direction={{ base: 'column', lg: 'row' }}
         align="center"
       >
-        <Heading
-          size="xl"
-          maxW="80%"
-          textAlign={'center'}
-          color="purple.700"
-          mb={{ base: '10', lg: '0' }}
-        >
+        <Heading size="xl" maxW="80%" textAlign={'center'} color="purple.700">
           {text}
         </Heading>
         {children}

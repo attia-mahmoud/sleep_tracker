@@ -4,19 +4,13 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import '../assets/styles/style.css';
 import {
   FlexibleXYPlot,
-  XYPlot,
-  LineSeries,
   LineMarkSeries,
-  VerticalGridLines,
   HorizontalGridLines,
   XAxis,
   YAxis,
-  VerticalBarSeries,
-  Highlight,
 } from 'react-vis';
-import { Box, VStack, Image, Heading } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import { UserContext } from '../App.js';
-import image from '../assets/images/loading.svg';
 
 const Graph = () => {
   const { user } = React.useContext(UserContext);
@@ -50,14 +44,12 @@ const Graph = () => {
 
   return (
     <>
-      {records ? (
+      {records && (
         <Box
           p={{ base: 5, lg: 10 }}
           id="Graph"
-          // bg="purple.300"
           borderRadius={15}
-          // boxSize={['350px', '500px' ]}
-          boxSize={{ base: '24rem', lg: '30rem' }}
+          boxSize={{ base: '24rem', lg: '35rem' }}
         >
           <FlexibleXYPlot xType="time" stroke="purple">
             <HorizontalGridLines />
@@ -102,11 +94,6 @@ const Graph = () => {
             />
           </FlexibleXYPlot>
         </Box>
-      ) : (
-        <VStack>
-          <Heading>Loading...</Heading>
-          <Image src={image} maxW="75%" />
-        </VStack>
       )}
     </>
   );

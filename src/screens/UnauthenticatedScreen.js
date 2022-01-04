@@ -30,12 +30,13 @@ const UnauthenticatedScreen = () => {
         </Heading>
         <Flex
           minH="60vh"
+          maxW="90%"
           justify="space-around"
           align="center"
           direction={['column', null, 'row']}
           spacing={10}
         >
-          <Image src={image} objectFit="fit" boxSize={['90%', '80%', '50%']} />
+          <Image src={image} objectFit="fit" boxSize={['90%', '80%', '40%']} />
           <VStack spacing={10} maxW="100%" textAlign="center" ml="3" mr="3">
             <Heading as="h3" size="lg">
               Start keeping track of your sleep today!

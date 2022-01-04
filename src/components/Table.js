@@ -5,7 +5,6 @@ import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
@@ -36,11 +35,13 @@ const RecordsTable = () => {
 
   return (
     <>
-      <Box id="Table" m={10} >
-        <Table fontSize={{base: "0.9rem", lg: '1rem'}} variant="striped" colorScheme="purple">
-          <TableCaption color="purple.700">
-            Latest Entries
-          </TableCaption>
+      <Box id="Table" m={10}>
+        <Table
+          fontSize={{ base: '0.9rem', lg: '1.1rem' }}
+          variant="striped"
+          colorScheme="purple"
+        >
+          <TableCaption color="purple.700">Last 10 Entries</TableCaption>
           <Thead>
             <Tr>
               <Th color="purple.600">Date</Th>
@@ -56,7 +57,7 @@ const RecordsTable = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {records.map(record => {
+            {records.slice(0, 10).map(record => {
               return (
                 <Tr key={record.id}>
                   <Td>{record.date}</Td>

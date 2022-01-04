@@ -24,8 +24,6 @@ const SignInButton = () => {
       leftIcon={<FaGoogle />}
       colorScheme="purple"
       size="lg"
-      color="purple.700"
-      bg="purple.100"
     >
       Sign in with Google
     </Button>
